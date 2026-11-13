@@ -9,7 +9,7 @@ let scaleValue = 1;
 
 /* Χρήστος τρέχει */
 
-christos.addEventListener("mouseenter", () => {
+function moveChristos(){
 
     const x = Math.random() * (window.innerWidth - 250);
     const y = Math.random() * (window.innerHeight - 300);
@@ -17,7 +17,11 @@ christos.addEventListener("mouseenter", () => {
     christos.style.position = "absolute";
     christos.style.left = x + "px";
     christos.style.top = y + "px";
-});
+}
+
+christos.addEventListener("mouseenter", moveChristos);
+
+christos.addEventListener("click", moveChristos);
 
 
 /* Αναστάσης μικραίνει */
