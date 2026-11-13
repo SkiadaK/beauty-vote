@@ -34,10 +34,35 @@ function showRetry(){
 
 /* Χρήστος τρέχει */
 
+function overlapsCards(x, y, w, h){
+
+    const margin = 15;
+
+    return [...girls, anastasis].some(card => {
+        const r = card.getBoundingClientRect();
+
+        return (
+            x < r.right + margin &&
+            x + w > r.left - margin &&
+            y < r.bottom + margin &&
+            y + h > r.top - margin
+        );
+    });
+}
+
 function moveChristos(){
 
-    const x = Math.random() * (window.innerWidth - 250);
-    const y = Math.random() * (window.innerHeight - 300);
+    const w = christos.offsetWidth;
+    const h = christos.offsetHeight;
+
+    let x, y;
+    let tries = 0;
+
+    do {
+        x = Math.random() * (window.innerWidth - w);
+        y = Math.random() * (window.innerHeight - h);
+        tries++;
+    } while (overlapsCards(x, y, w, h) && tries < 100);
 
     christos.style.position = "fixed";
     christos.style.left = x + "px";
